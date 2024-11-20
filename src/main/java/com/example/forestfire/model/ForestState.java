@@ -7,9 +7,9 @@ package com.example.forestfire.model;
  */
 public class ForestState {
 
-    private int height;
-    private int width;
-    private CellState[][] grid;
+    private final int height;
+    private final int width;
+    private final CellState[][] grid;
 
     public ForestState(int height, int width, CellState[][] grid) {
         this.height = height;

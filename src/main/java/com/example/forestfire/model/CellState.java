@@ -3,7 +3,6 @@ package com.example.forestfire.model;
 /**
  * The CellState enum represents the possible states of a cell
  * in a forest fire simulation.
- *
  * States:
  * - EMPTY: The cell has not burned yet.
  * - BURNING: The cell is currently in fire.

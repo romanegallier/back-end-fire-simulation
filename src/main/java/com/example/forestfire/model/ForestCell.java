@@ -6,9 +6,9 @@ package com.example.forestfire.model;
  * its position within the forest grid.
  */
 public class ForestCell {
-    private CellState state;
-    private int x;
-    private int y;
+    private final CellState state;
+    private final int x;
+    private final int y;
 
     public ForestCell(int x, int y, CellState cellState) {
         this.x=x;
