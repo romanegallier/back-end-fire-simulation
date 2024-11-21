@@ -1,7 +1,7 @@
 package com.example.forestfire.controler;
 
+import com.example.forestfire.model.CellState;
 import com.example.forestfire.model.ForestCell;
-import com.example.forestfire.model.ForestState;
 import com.example.forestfire.service.FirePropagationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +23,8 @@ public class ForestFireController {
 
     //Initialise the fire
     @GetMapping("/initialize")
-    public ForestState initialize() {
+    public CellState[][] initialize() {
         return firePropagationService.initializeForest();
-
     }
 
     // Provide the next step of the fire

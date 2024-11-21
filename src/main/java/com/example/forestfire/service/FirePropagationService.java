@@ -3,7 +3,6 @@ package com.example.forestfire.service;
 import com.example.forestfire.config.ForestConfig;
 import com.example.forestfire.model.CellState;
 import com.example.forestfire.model.ForestCell;
-import com.example.forestfire.model.ForestState;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ import java.util.List;
 public class FirePropagationService {
 
     private CellState[][] forest;
-
     private final ForestConfig forestConfig;
 
     public FirePropagationService(ForestConfig forestConfig) {
@@ -28,7 +26,7 @@ public class FirePropagationService {
      * Initialize the forrest from the configuration file
      * @return the state of the forrest
      */
-    public ForestState initializeForest() {
+    public CellState[][] initializeForest() {
         //Create empty forest
         forest = new CellState[forestConfig.getHeight()][forestConfig.getWidth()];
         for (int i = 0; i < forestConfig.getHeight(); i++) {
@@ -41,7 +39,7 @@ public class FirePropagationService {
             forest[position.get(0)][position.get(1)]=CellState.BURNING;
         }
 
-        return new ForestState(forestConfig.getHeight(), forestConfig.getWidth(), forest);
+        return forest;
     }
 
     /**

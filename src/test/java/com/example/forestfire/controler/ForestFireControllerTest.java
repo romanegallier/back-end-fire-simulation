@@ -1,7 +1,6 @@
 package com.example.forestfire.controler;
 import com.example.forestfire.model.CellState;
 import com.example.forestfire.model.ForestCell;
-import com.example.forestfire.model.ForestState;
 import com.example.forestfire.service.FirePropagationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +26,12 @@ public class ForestFireControllerTest {
 
     @Test
     public void testInitialize() throws Exception {
-        ForestState mockForestState = new ForestState(10, 10, new CellState[10][10]);
-        when(firePropagationService.initializeForest()).thenReturn(mockForestState);
+        CellState[][] mockForest = new CellState[10][10];
+        when(firePropagationService.initializeForest()).thenReturn(mockForest);
 
         mockMvc.perform(get("/api/forest/initialize"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.height").value(10))
-                .andExpect(jsonPath("$.width").value(10))
-                .andExpect(jsonPath("$.grid").isArray());
+                .andExpect(jsonPath("$").isArray());
     }
 
     @Test

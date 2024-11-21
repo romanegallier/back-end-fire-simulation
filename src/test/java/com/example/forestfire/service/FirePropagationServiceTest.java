@@ -3,7 +3,6 @@ package com.example.forestfire.service;
 import com.example.forestfire.config.ForestConfig;
 import com.example.forestfire.model.CellState;
 import com.example.forestfire.model.ForestCell;
-import com.example.forestfire.model.ForestState;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -75,14 +74,14 @@ public class FirePropagationServiceTest {
         when(forestConfig.getWidth()).thenReturn(3);
         when(forestConfig.getInitialFirePositions()).thenReturn(List.of());
 
-        ForestState forestState = firePropagationService.initializeForest();
+        CellState[][] forestState = firePropagationService.initializeForest();
 
         assertNotNull(forestState);
-        assertEquals(3, forestState.getHeight());
-        assertEquals(3, forestState.getWidth());
+        assertEquals(3, forestState.length);
+        assertEquals(3, forestState[0].length);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                assertEquals(CellState.EMPTY, forestState.getGrid()[i][j]);
+                assertEquals(CellState.EMPTY, forestState[i][j]);
             }
         }
     }
@@ -95,20 +94,20 @@ public class FirePropagationServiceTest {
                 List.of(0, 0), List.of(1, 1), List.of(2, 2)
         ));
 
-        ForestState forestState = firePropagationService.initializeForest();
+        CellState[][] forestState = firePropagationService.initializeForest();
 
         assertNotNull(forestState);
-        assertEquals(3, forestState.getHeight());
-        assertEquals(3, forestState.getWidth());
-        assertEquals(CellState.BURNING, forestState.getGrid()[0][0]);
-        assertEquals(CellState.BURNING, forestState.getGrid()[1][1]);
-        assertEquals(CellState.BURNING, forestState.getGrid()[2][2]);
+        assertEquals(3, forestState.length);
+        assertEquals(3, forestState[0].length);
+        assertEquals(CellState.BURNING, forestState[0][0]);
+        assertEquals(CellState.BURNING, forestState[1][1]);
+        assertEquals(CellState.BURNING, forestState[2][2]);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if ((i == 0 && j == 0) || (i == 1 && j == 1) || (i == 2 && j == 2)) {
                     continue;
                 }
-                assertEquals(CellState.EMPTY, forestState.getGrid()[i][j]);
+                assertEquals(CellState.EMPTY, forestState[i][j]);
             }
         }
     }
